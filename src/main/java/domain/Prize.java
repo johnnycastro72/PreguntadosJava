@@ -27,6 +27,6 @@ public class Prize {
 
     @Override
     public String toString() {
-        return "El premio es " + value;
+        return value + " pesos más.";
     }
 }

@@ -18,7 +18,6 @@ public class ControllerGame {
         Scanner scan = new Scanner(System.in);
         String mainMenu =  """                    
 
-                    
                     ************************************************************************************
                                               Bienvenido al concurso Preguntados
                                                
@@ -30,7 +29,7 @@ public class ControllerGame {
         String continueMenu = """
 
                     ************************************************************************************
-                    Haz contestado correctamente
+                    ¡Haz contestado correctamente!
                     Por favor seleccione una de las siguientes opciones:
                     1 Continuar
                     2 Rendirse
@@ -43,7 +42,7 @@ public class ControllerGame {
     private Gamer gamerName() {
         ControllerGamer controllerGamer = new ControllerGamer();
         Scanner scan = new Scanner(System.in);
-        System.out.println("Por favor ingrese su nombre");
+        System.out.println("Por favor ingrese su nombre: ");
         String name = scan.next();
         Gamer gamer = controllerGamer.create(name);
         return gamer;
@@ -77,7 +76,7 @@ public class ControllerGame {
         Round round = controllerRound.obtain(actualRound);
         Prize prize = round.prize();
         System.out.println("Tu premio acumulado es: " + value);
-        System.out.println("Contesta la pregunta correctamente y podrás ganar  " + prize);
+        System.out.println("Contesta la pregunta correctamente y podrás ganar " + prize);
         ArrayList<Question> questions = controllerQuestion.query(round.category());
         Random random = new Random();
         Question question = questions.get(random.nextInt((4 - 1) + 1) + 1);
