@@ -3,7 +3,7 @@ package controller;
 import domain.Round;
 import repository.RoundRepository;
 
-public class ControllerRound {
+public class ControllerRound implements IObtain {
     RoundRepository roundRepo = new RoundRepository();
 
     @Override
