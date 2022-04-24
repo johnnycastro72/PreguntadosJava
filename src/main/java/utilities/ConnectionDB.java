@@ -31,7 +31,7 @@ public class ConnectionDB {
 
             conn = DriverManager.getConnection(dbURL, username, password);
 
-        } catch (SQLException | FileNotFoundException ex ) {
+        } catch (SQLException | FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException | ParseException ex) {
             ex.printStackTrace();

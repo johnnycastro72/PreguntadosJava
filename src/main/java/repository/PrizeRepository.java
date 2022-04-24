@@ -11,10 +11,10 @@ import java.sql.SQLException;
 public class PrizeRepository {
     private Connection conn = null;
 
-    public Prize getPrize(Integer Id){
+    public Prize getPrize(Integer Id) {
         Prize prize = null;
         String sql = "SELECT pri_name, pri_value FROM prize WHERE pri_id=?;";
-        try{
+        try {
             conn = ConnectionDB.getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -22,9 +22,8 @@ public class PrizeRepository {
             ResultSet result = statement.executeQuery();
             result.next();
             prize = new Prize(Id, result.getString(1), result.getFloat(2));
-        }
-        catch (SQLException ex) {
-            System.out.println("Código : " + ex.getErrorCode()+ "\nError :" + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Código : " + ex.getErrorCode() + "\nError :" + ex.getMessage());
         }
         return prize;
     }

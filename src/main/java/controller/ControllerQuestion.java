@@ -6,7 +6,7 @@ import repository.QuestionRepository;
 
 import java.util.ArrayList;
 
-public class ControllerQuestion implements IQuery{
+public class ControllerQuestion implements IQuery {
     QuestionRepository questionRepo = new QuestionRepository();
 
     @Override

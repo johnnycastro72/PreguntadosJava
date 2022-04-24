@@ -13,31 +13,30 @@ import java.util.ArrayList;
 public class QuestionRepository {
     private Connection conn = null;
 
-    public ArrayList<Question> getQuestionByCategory(Category category){
+    public ArrayList<Question> getQuestionByCategory(Category category) {
         ArrayList<Question> questions = new ArrayList();
-        String sql          = "SELECT que_id, que_category_id, que_text FROM question WHERE question.que_category_id=?;";
+        String sql = "SELECT que_id, que_category_id, que_text FROM question WHERE question.que_category_id=?;";
         try {
             conn = ConnectionDB.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, category.Id());
-            ResultSet result    = statement.executeQuery();
+            ResultSet result = statement.executeQuery();
 
             while (result.next()) {
                 Question question = new Question(result.getInt(1), category, result.getString(3));
-                questions.add( question );
+                questions.add(question);
             }
-        }
-        catch(SQLException ex){
-            System.out.println("Código : " + ex.getErrorCode()+ "\nError :" + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Código : " + ex.getErrorCode() + "\nError :" + ex.getMessage());
         }
         return questions;
     }
 
-    public Question getQuestion(Integer Id){
+    public Question getQuestion(Integer Id) {
         Question question = null;
         CategoryRepository catRep = new CategoryRepository();
         String sql = "SELECT que_category_id, que_text FROM question WHERE que_id=?;";
-        try{
+        try {
             conn = ConnectionDB.getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -46,9 +45,8 @@ public class QuestionRepository {
             result.next();
             Category category = catRep.getCategory(result.getInt(1));
             question = new Question(Id, category, result.getString(2));
-        }
-        catch (SQLException ex) {
-            System.out.println("Código : " + ex.getErrorCode()+ "\nError :" + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Código : " + ex.getErrorCode() + "\nError :" + ex.getMessage());
         }
         return question;
     }
@@ -57,7 +55,7 @@ public class QuestionRepository {
         ArrayList<Question> questions = new ArrayList();
         CategoryRepository catRep = new CategoryRepository();
         String sql = "SELECT que_id, que_category_id, que_text FROM question;";
-        try{
+        try {
             conn = ConnectionDB.getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -65,11 +63,10 @@ public class QuestionRepository {
             while (result.next()) {
                 Category category = catRep.getCategory(result.getInt(2));
                 Question question = new Question(result.getInt(1), category, result.getString(3));
-                questions.add( question );
+                questions.add(question);
             }
-        }
-        catch (SQLException ex) {
-            System.out.println("Código : " + ex.getErrorCode()+ "\nError :" + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Código : " + ex.getErrorCode() + "\nError :" + ex.getMessage());
         }
         return questions;
     }

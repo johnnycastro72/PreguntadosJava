@@ -6,7 +6,7 @@ import repository.RecordRepository;
 
 import java.util.ArrayList;
 
-public class ControllerRecord implements ICreate, IQuery{
+public class ControllerRecord implements ICreate, IQuery {
     RecordRepository recordRepo = new RecordRepository();
 
     @Override

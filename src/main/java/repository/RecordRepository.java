@@ -13,48 +13,46 @@ import java.util.ArrayList;
 public class RecordRepository {
     private Connection conn = null;
 
-    public ArrayList<Record> getRecords(){
+    public ArrayList<Record> getRecords() {
         ArrayList<Record> records = new ArrayList();
         GamerRepository gamerRepo = new GamerRepository();
-        String sql          = "SELECT rec_id, rec_gamer_id, rec_date, rec_value FROM record;";
+        String sql = "SELECT rec_id, rec_gamer_id, rec_date, rec_value FROM record;";
         try {
             conn = ConnectionDB.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            ResultSet result    = statement.executeQuery();
+            ResultSet result = statement.executeQuery();
 
             while (result.next()) {
                 Gamer gamer = gamerRepo.getGamer(result.getInt(2));
                 Record record = new Record(result.getInt(1), gamer, result.getTimestamp(3), result.getFloat(4));
-                records.add( record );
+                records.add(record);
             }
-        }
-        catch(SQLException ex){
-            System.out.println("Código : " + ex.getErrorCode()+ "\nError :" + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Código : " + ex.getErrorCode() + "\nError :" + ex.getMessage());
         }
         return records;
     }
 
-    public ArrayList<Record> getRecordsByGamer(Gamer gamer){
+    public ArrayList<Record> getRecordsByGamer(Gamer gamer) {
         ArrayList<Record> records = new ArrayList();
-        String sql          = "SELECT rec_id, rec_gamer_id, rec_date, rec_value FROM record WHERE rec_gamer_id=?;";
+        String sql = "SELECT rec_id, rec_gamer_id, rec_date, rec_value FROM record WHERE rec_gamer_id=?;";
         try {
             conn = ConnectionDB.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, gamer.Id());
-            ResultSet result    = statement.executeQuery();
+            ResultSet result = statement.executeQuery();
 
             while (result.next()) {
                 Record record = new Record(result.getInt(1), gamer, result.getTimestamp(3), result.getFloat(4));
-                records.add( record );
+                records.add(record);
             }
-        }
-        catch(SQLException ex){
-            System.out.println("Código : " + ex.getErrorCode()+ "\nError :" + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Código : " + ex.getErrorCode() + "\nError :" + ex.getMessage());
         }
         return records;
     }
 
-    public void insertRecord(Record record){
+    public void insertRecord(Record record) {
         String sql = "INSERT INTO record(rec_id, rec_gamer_id, rec_date, rec_value) VALUES (?, ?, ?, ?);";
         try {
             conn = ConnectionDB.getConnection();
@@ -67,7 +65,7 @@ public class RecordRepository {
 
             Integer rowsInserted = statement.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println("Código : " + ex.getErrorCode()+ "\nError :" + ex.getMessage());
+            System.out.println("Código : " + ex.getErrorCode() + "\nError :" + ex.getMessage());
         }
     }
 

@@ -14,27 +14,30 @@ import java.util.Scanner;
 
 public class ControllerGame {
 
-    private String optionMenu(Integer typeMenu) {
+    private String optionMenu(Integer typeMenu, Float value) {
         Scanner scan = new Scanner(System.in);
-        String mainMenu =  """                    
+        String mainMenu = """                    
 
-                    ════════════════════════════════════════════════════════════════════════════════════
-                                              Bienvenido al concurso Preguntados
-                                               
-                    Por favor seleccione una de las siguientes opciones:
-                    1 Jugar
-                    2 Ver Resultados
-                    3 Salir
-                    ════════════════════════════════════════════════════════════════════════════════════""";
+                ════════════════════════════════════════════════════════════════════════════════════
+                                          Bienvenido al concurso Preguntados
+                                           
+                Por favor seleccione una de las siguientes opciones:
+                1 Jugar
+                2 Ver Resultados
+                3 Salir
+                ════════════════════════════════════════════════════════════════════════════════════""";
         String continueMenu = """
 
-                    ════════════════════════════════════════════════════════════════════════════════════
-                    ¡Has contestado correctamente!
-                    Por favor seleccione una de las siguientes opciones:
-                    1 Continuar
-                    2 Rendirse
-                    ════════════════════════════════════════════════════════════════════════════════════""";
-        System.out.println((typeMenu==1) ? mainMenu: continueMenu);
+                ════════════════════════════════════════════════════════════════════════════════════
+                ¡Has contestado correctamente!
+                Por favor seleccione una de las siguientes opciones:
+                1 Continuar
+                2 Rendirse
+                ════════════════════════════════════════════════════════════════════════════════════""";
+        System.out.println((typeMenu == 1) ? mainMenu : continueMenu);
+        if (value != 0f) {
+            System.out.println("Tu premio acumulado es: " + value);
+        }
         String ansMenu = scan.next();
         return ansMenu;
     }
@@ -53,7 +56,7 @@ public class ControllerGame {
         Record record = new Record(id, gamer, date, value);
         controllerRecord.create(record);
         System.out.println(message);
-        System.out.println("Tu premio acumulado es: " + value);
+        System.out.println("Tu premio final es: " + value);
     }
 
     private void showScores() {
@@ -68,6 +71,12 @@ public class ControllerGame {
         System.out.println("╚════╩═════════════════════════════════════════════════════╩═══════════════════════╝");
     }
 
+    private void printAnswers(ArrayList<Answer> answers) {
+        for (Integer i = 1; i < answers.size() + 1; i++) {
+            System.out.println(i.toString() + " - " + answers.get(i - 1).text());
+        }
+    }
+
     private Object[] obtainRound(Integer actualRound, Float value) {
         Scanner scan = new Scanner(System.in);
         ControllerRound controllerRound = new ControllerRound();
@@ -75,7 +84,6 @@ public class ControllerGame {
         ControllerAnswer controllerAnswer = new ControllerAnswer();
         Round round = controllerRound.obtain(actualRound);
         Prize prize = round.prize();
-        System.out.println("Tu premio acumulado es: " + value);
         System.out.println("Contesta la pregunta correctamente y podrás ganar " + prize);
         ArrayList<Question> questions = controllerQuestion.query(round.category());
         Random random = new Random();
@@ -83,15 +91,13 @@ public class ControllerGame {
         System.out.println("════════════════════════════════════════════════════════════════════════════════════");
         System.out.println(question.text());
         ArrayList<Answer> answers = controllerAnswer.query(question);
-        for (Integer i = 1; i < answers.size() + 1; i++) {
-            System.out.println(i.toString() + " - " + answers.get(i - 1).text());
-        }
+        printAnswers(answers);
         System.out.println("Elija la respuesta correcta: ");
         System.out.println("════════════════════════════════════════════════════════════════════════════════════");
         String ansGamer = scan.next();
         Integer intAnswer = Integer.parseInt(ansGamer);
         value += prize.value();
-        return new Object[]{Boolean.valueOf((answers.get(intAnswer - 1).correct())),Float.valueOf(value)};
+        return new Object[]{Boolean.valueOf((answers.get(intAnswer - 1).correct())), Float.valueOf(value)};
     }
 
     private void startRounds() {
@@ -108,7 +114,7 @@ public class ControllerGame {
             value = (Float) arrayAns[1];
             actualRound++;
             if (ansCorrect && (actualRound < 6)) {
-                continueMenu = optionMenu(2);
+                continueMenu = optionMenu(2, value);
                 if (continueMenu.equals("2")) {
                     saveRecord(0, gamer, date, value, "Ohh vale " + gamer + ", también se vale rendirse");
                 }
@@ -128,7 +134,7 @@ public class ControllerGame {
     public void GameStart() {
         String mainMenu;
         do {
-            mainMenu = optionMenu(1);
+            mainMenu = optionMenu(1, 0f);
             switch (mainMenu) {
                 case "1" -> {
                     startRounds();

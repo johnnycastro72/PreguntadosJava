@@ -11,10 +11,10 @@ import java.sql.SQLException;
 public class CategoryRepository {
     private Connection conn = null;
 
-    public Category getCategory(Integer Id){
+    public Category getCategory(Integer Id) {
         Category category = null;
         String sql = "SELECT cat_level FROM category WHERE cat_id=?;";
-        try{
+        try {
             conn = ConnectionDB.getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -22,9 +22,8 @@ public class CategoryRepository {
             ResultSet result = statement.executeQuery();
             result.next();
             category = new Category(Id, result.getString(1));
-        }
-        catch (SQLException ex) {
-            System.out.println("Código : " + ex.getErrorCode()+ "\nError :" + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Código : " + ex.getErrorCode() + "\nError :" + ex.getMessage());
         }
         return category;
     }
