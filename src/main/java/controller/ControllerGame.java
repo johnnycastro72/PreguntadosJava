@@ -18,22 +18,22 @@ public class ControllerGame {
         Scanner scan = new Scanner(System.in);
         String mainMenu =  """                    
 
-                    ************************************************************************************
+                    ════════════════════════════════════════════════════════════════════════════════════
                                               Bienvenido al concurso Preguntados
                                                
                     Por favor seleccione una de las siguientes opciones:
                     1 Jugar
                     2 Ver Resultados
                     3 Salir
-                    ************************************************************************************""";
+                    ════════════════════════════════════════════════════════════════════════════════════""";
         String continueMenu = """
 
-                    ************************************************************************************
-                    ¡Haz contestado correctamente!
+                    ════════════════════════════════════════════════════════════════════════════════════
+                    ¡Has contestado correctamente!
                     Por favor seleccione una de las siguientes opciones:
                     1 Continuar
                     2 Rendirse
-                    ************************************************************************************""";
+                    ════════════════════════════════════════════════════════════════════════════════════""";
         System.out.println((typeMenu==1) ? mainMenu: continueMenu);
         String ansMenu = scan.next();
         return ansMenu;
@@ -59,13 +59,13 @@ public class ControllerGame {
     private void showScores() {
         ControllerRecord controllerRecord = new ControllerRecord();
         ArrayList<Record> records = controllerRecord.query();
-        System.out.println("************************************************************************************");
-        System.out.println("* Id *              Nombre del Jugador                     *       Premio          *");
-        System.out.println("************************************************************************************");
+        System.out.println("╔════╦═════════════════════════════════════════════════════╦═══════════════════════╗");
+        System.out.println("║ Id ║              Nombre del Jugador                     ║       Premio          ║");
+        System.out.println("╠════╬═════════════════════════════════════════════════════╬═══════════════════════╣");
         for (Record record : records) {
-            System.out.format("* %2s * %-51s * %22s*%n", record.Id().toString(), record.gamer().name(), record.value().toString());
+            System.out.format("║ %2s ║ %-51s ║ %22s║%n", record.Id().toString(), record.gamer().name(), record.value().toString());
         }
-        System.out.println("************************************************************************************");
+        System.out.println("╚════╩═════════════════════════════════════════════════════╩═══════════════════════╝");
     }
 
     private Object[] obtainRound(Integer actualRound, Float value) {
@@ -80,14 +80,14 @@ public class ControllerGame {
         ArrayList<Question> questions = controllerQuestion.query(round.category());
         Random random = new Random();
         Question question = questions.get(random.nextInt((4 - 1) + 1) + 1);
-        System.out.println("************************************************************************************");
+        System.out.println("════════════════════════════════════════════════════════════════════════════════════");
         System.out.println(question.text());
         ArrayList<Answer> answers = controllerAnswer.query(question);
         for (Integer i = 1; i < answers.size() + 1; i++) {
             System.out.println(i.toString() + " - " + answers.get(i - 1).text());
         }
         System.out.println("Elija la respuesta correcta: ");
-        System.out.println("************************************************************************************");
+        System.out.println("════════════════════════════════════════════════════════════════════════════════════");
         String ansGamer = scan.next();
         Integer intAnswer = Integer.parseInt(ansGamer);
         value += prize.value();
