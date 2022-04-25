@@ -34,16 +34,25 @@ Por favor espere a que cargue todo, esto puedo tomar algo de tiempo.
 ## ¡A probarlo! ▶
 
 ### Te aparecerá un menú con tres opciones, ¡escribe 1 para jugar!
+![alt text](https://github.com/johnnycastro72/PreguntadosJava/blob/development/src/main/java/utilities/images/mainMenu.JPG)
 
 ### Escribe tu nombre para guardar tu progreso
+![alt text](https://github.com/johnnycastro72/PreguntadosJava/blob/development/src/main/java/utilities/images/writeName.JPG)
 
-### Contesta las preguntas digitado el numero correspondiente
+### Contesta las preguntas digitado el número correspondiente
+![alt text](https://github.com/johnnycastro72/PreguntadosJava/blob/development/src/main/java/utilities/images/answer.JPG)
 
 ### Tienes la opción de rendirte
+![alt text](https://github.com/johnnycastro72/PreguntadosJava/blob/development/src/main/java/utilities/images/GiveUp.JPG)
 
 ### Recuerda que si te equivocas perderás todo
+![alt text](https://github.com/johnnycastro72/PreguntadosJava/blob/development/src/main/java/utilities/images/gameOver.JPG)
 
-### Cosulta todos los registros guardados
+### El premio mayor es por 2 millones, ¡intenta ganar!
+![alt text](https://github.com/johnnycastro72/PreguntadosJava/blob/development/src/main/java/utilities/images/win.JPG)
+
+### Consulta todos los registros guardados
+![alt text](https://github.com/johnnycastro72/PreguntadosJava/blob/development/src/main/java/utilities/images/records.JPG)
 
 ---
 ⌨️ con ❤️ por [Jhonny Castro](https://github.com/johnnycastro72), [Lorena Castro](https://github.com/Lcastro98) y [Adryan Ynfante](https://github.com/HelloStan13)
