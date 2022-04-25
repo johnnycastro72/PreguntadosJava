@@ -10,9 +10,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This class defines the rounds repository
+ *
+ * @version 1.0.0 24/04/2022
+ * @author Jhonny Castro johnny.castro@misena.edu.co
+ * @author Lorena Castro lcastro98@gmail.com
+ * @author Adryan Ynfante adryanynfante@gmail.com
+ * @since 1.0.0
+ */
 public class RoundRepository {
     private Connection conn = null;
 
+    /**
+     * Get a round instance from the database
+     *
+     * @param Id  a round identifier
+     * @return a round instance
+     */
     public Round getRound(Integer Id) {
         PrizeRepository priRep = new PrizeRepository();
         CategoryRepository catRep = new CategoryRepository();

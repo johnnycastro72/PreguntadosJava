@@ -8,9 +8,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This class defines the categories repository
+ *
+ * @version 1.0.0 24/04/2022
+ * @author Jhonny Castro johnny.castro@misena.edu.co
+ * @author Lorena Castro lcastro98@gmail.com
+ * @author Adryan Ynfante adryanynfante@gmail.com
+ * @since 1.0.0
+ */
 public class CategoryRepository {
     private Connection conn = null;
 
+    /**
+     * Get a category from the database
+     *
+     * @param Id  a category identifier
+     * @return    a category instance
+     */
     public Category getCategory(Integer Id) {
         Category category = null;
         String sql = "SELECT cat_level FROM category WHERE cat_id=?;";

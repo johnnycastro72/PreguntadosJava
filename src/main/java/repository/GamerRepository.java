@@ -8,9 +8,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This class defines the gamers repository
+ *
+ * @version 1.0.0 24/04/2022
+ * @author Jhonny Castro johnny.castro@misena.edu.co
+ * @author Lorena Castro lcastro98@gmail.com
+ * @author Adryan Ynfante adryanynfante@gmail.com
+ * @since 1.0.0
+ */
 public class GamerRepository {
     private Connection conn = null;
 
+    /**
+     * Get a gamer instance from the database
+     *
+     * @param Id  a gamer identifier
+     * @return a gamer instance
+     */
     public Gamer getGamer(Integer Id) {
         Gamer gamer = null;
         String sql = "SELECT gam_name FROM gamer WHERE gam_id=?;";
@@ -28,6 +43,11 @@ public class GamerRepository {
         return gamer;
     }
 
+    /**
+     * Get the last created gamer instance from the database
+     *
+     * @return a gamer instance
+     */
     public Gamer getLastGamer() {
         Gamer gamer = null;
         String sql = "SELECT gam_id, gam_name FROM gamer ORDER BY gam_id DESC LIMIT 1;";
@@ -44,6 +64,11 @@ public class GamerRepository {
         return gamer;
     }
 
+    /**
+     * Insert a gamer into the database
+     *
+     * @param gamer  a gamer instance
+     */
     public void insertGamer(Gamer gamer) {
         String sql = "INSERT INTO gamer(gam_name) VALUES (?);";
         try {
