@@ -23,7 +23,7 @@ public class QuestionRepository {
     private Connection conn = null;
 
     /**
-     * Get an array of answers by question from the database
+     * Get an array of question by category from the database
      *
      * @param category  a category instance
      * @return an array of questions
