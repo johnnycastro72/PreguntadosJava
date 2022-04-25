@@ -31,6 +31,8 @@ Abra el archivo en Intellij IDEA y ejecute el programa.
 
 Por favor espere a que cargue todo, esto puedo tomar algo de tiempo.
 
+Tenga en cuenta que, como se trata de una base de datos local, las credenciales cambiarán. Actualice con sus datos el archivo [db_credentials.json](https://github.com/johnnycastro72/PreguntadosJava/blob/main/src/main/java/utilities/db_credentials.json) contenido en la carpeta utilities.
+
 ## ¡A probarlo! ▶
 
 ### Te aparecerá un menú con tres opciones, ¡escribe 1 para jugar!
